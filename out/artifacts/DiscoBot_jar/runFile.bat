@@ -1,0 +1,1 @@
+java -jar DiscordBot.jar "OTIwNzU2MzkzMzM2Nzg2OTQ0.Ybo_Ng.TQ_8q7q5NydOtYCc32lq3_NQcdw"
