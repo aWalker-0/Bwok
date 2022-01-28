@@ -1,3 +1,4 @@
+import com.awok.bwok.Config;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -45,7 +46,8 @@ public class DiscoBot extends ListenerAdapter {
 
     public static void main(String[] args) throws LoginException {
 
-        String token = System.getenv("DISCORD_BOT_TOKEN");
+        String token = Config.get("TOKEN");
+
 
         // We only need 2 gateway intents enabled for this example:
         EnumSet<GatewayIntent> intents = EnumSet.of(
@@ -177,6 +179,10 @@ public class DiscoBot extends ListenerAdapter {
         if (content.equals("!join")) {
             onJoinCommand(event);
         }
+
+        if (content.equals("!!say")) {
+            onSayCommand(event);
+        }
     }
 
 
@@ -254,6 +260,12 @@ public class DiscoBot extends ListenerAdapter {
         }
         connectTo(channel);                     // We found a channel to connect to!
         onConnecting(channel, messageChannel);     // Let the user know, we were successful!
+    }
+
+
+    private void onSayCommand(MessageReceivedEvent event) {
+        TextChannel textChannel = event.getGuild().getTextChannelsByName("d2-discussion", true).get(0);
+        textChannel.sendMessage("I can riad tomarow if yu nead anethor human.").queue();
     }
 
 
